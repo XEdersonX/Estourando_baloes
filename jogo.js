@@ -1,6 +1,8 @@
 /**
  * Created by Ederson on 17/05/2017.
  */
+var timerId = null; //Variavel que armazena a chamada da função timeout
+
 function iniciaJogo() {
     var url = window.location.search;
 
@@ -39,6 +41,29 @@ function iniciaJogo() {
     
     //Imprimir a quantidade de balões estourados
     document.getElementById('baloes_estourados').innerHTML = 0;
+
+    contagem_tempo(tempo_segundos + 1);
+    
+}
+
+function contagem_tempo(segundos) {
+
+    segundos = segundos - 1;
+
+    if (segundos == -1){
+        clearTimeout(timerId); //Para a execução da função do settimeout
+        game_over();
+        return false;
+
+    }
+
+    document.getElementById('cronometro').innerHTML = segundos;
+
+    timerId = setTimeout("contagem_tempo(" + segundos + ")", 1000);
+    
+}
+
+function game_over('Fim de jogo, você não conseguiu estourar todos os balões a tempo.') {
     
 }
 
