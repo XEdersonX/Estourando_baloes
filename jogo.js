@@ -63,7 +63,8 @@ function contagem_tempo(segundos) {
     
 }
 
-function game_over('Fim de jogo, você não conseguiu estourar todos os balões a tempo.') {
+function game_over() {
+    alert('Fim de jogo, você não conseguiu estourar todos os balões a tempo.');
     
 }
 
@@ -74,7 +75,19 @@ function cria_baloes(qtde_baloes) {
         var balao = document.createElement("img");
         balao.src = 'imagens/balao_azul_pequeno.png';
         balao.style.margin = '10px';
+        balao.id = 'b' + i;
+        balao.onclick = function () { estourar(this); }
 
         document.getElementById('cenario').appendChild(balao);
     }
+}
+
+function estourar(e) {
+
+    var id_balao = e.id;
+
+    document.getElementById(id_balao).src = 'imagens/balao_azul_pequeno_estourado.png';
+
+    alert('balao clicado');
+
 }
