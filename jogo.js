@@ -88,6 +88,37 @@ function estourar(e) {
 
     document.getElementById(id_balao).src = 'imagens/balao_azul_pequeno_estourado.png';
 
-    alert('balao clicado');
+    pontuacao(-1);
+
+}
+
+function pontuacao(acao) {
+    var baloes_inteiros = document.getElementById('baloes_inteiros').innerHTML;
+    var baloes_estourados = document.getElementById('baloes_estourados').innerHTML;
+
+    baloes_inteiros = parseInt(baloes_inteiros);
+    baloes_estourados = parseInt(baloes_estourados);
+
+    baloes_inteiros = baloes_inteiros + acao;
+    baloes_estourados = baloes_estourados - acao;
+
+    document.getElementById('baloes_inteiros').innerHTML = baloes_inteiros;
+    document.getElementById('baloes_estourados').innerHTML = baloes_estourados;
+
+
+    situacao_jogo(baloes_inteiros);
+}
+
+function situacao_jogo(baloes_inteiros) {
+
+    if (baloes_inteiros == 0){
+        alert('Parabéns, você conseguiu estourar todos os balões a tempo.');
+        parar_jogo();
+    }
+
+}
+
+function parar_jogo() {
+    clearTimeout(timerId);
 
 }
